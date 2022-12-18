@@ -2,6 +2,7 @@ from manim import *
 
 class DataRace(Scene):
     def construct(self):
+        self.camera.background_color = "#252525"
         # GLOBAL VARIABLE
         global_text = Text("GLOBAL", color=GREY).shift(UP)
         global_count = Text("0")
