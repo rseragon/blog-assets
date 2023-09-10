@@ -2,6 +2,8 @@ from manim import *
 
 class Strcpy(Scene):
     def construct(self):
+        self.camera.background_color = "#1b1b1e" 
+
         # Create 2 grids of size 5 x 1 and 5 x 1
         grid1 = NumberPlane(x_range=[0, 5, 1], y_range=[0, 1, 1])
         grid2 = NumberPlane(x_range=[0, 5, 1], y_range=[0, 1, 1])
