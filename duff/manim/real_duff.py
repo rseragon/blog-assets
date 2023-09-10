@@ -4,6 +4,7 @@ from manim import *
 
 class Duff(Scene):
     def construct(self):
+        self.camera.background_color = "#1b1b1e" 
         # Create two grids of size 10x1 and 10x1 and place them next to each other
         grid1 = NumberPlane(x_range=[0, 10, 1], y_range=[0, 1, 1], x_length=10, y_length=1)
         grid2 = NumberPlane(x_range=[0, 1, 1], y_range=[0, 1, 1], x_length=1, y_length=1)
