@@ -2,17 +2,13 @@
 #include <stdlib.h>
 
 int* duff(int* dst, const int* src, int len) {
-    int n = (len + 7) / 8;
+    int n = (len + 3) / 4;
 
-    switch(len % 8) {
-        case 0: do {
-        case 7: *dst++ = *src++;
-        case 6: *dst++ = *src++;
-        case 5: *dst++ = *src++;
-        case 4: *dst++ = *src++;
-        case 3: *dst++ = *src++;
-        case 2: *dst++ = *src++;
-        case 1: *dst++ = *src++;
+    switch(len % 4) {
+        case 0: do { *dst++ = *src++; printf("Case 0\n");
+        case 3: *dst++ = *src++; printf("Case 3\n");
+        case 2: *dst++ = *src++; printf("Case 2\n");
+        case 1: *dst++ = *src++; printf("Case 1\n");
             } while(--n);
     };
 
@@ -20,7 +16,8 @@ int* duff(int* dst, const int* src, int len) {
 }
 
 int main() {
-    int src[] = {1, 2, 8, 4, 5};
+    //int src[] = {1, 2, 8, 4, 5};
+    int src[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     int len = sizeof(src)/sizeof(int);
     int dest[len];
 
