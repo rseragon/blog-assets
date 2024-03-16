@@ -1,0 +1,6 @@
+services:
+  hono:
+    build: .
+    command: bun run src/index.ts
+    ports:
+      - "8080:8080"
