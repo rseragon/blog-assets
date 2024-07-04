@@ -2,13 +2,18 @@
 
 from manim import *
 
+
 class Duff(Scene):
     def construct(self):
-        self.camera.background_color = "#1b1b1e" 
+        self.camera.background_color = "#1b1b1e"
 
         # Create two grids of size 10x1 and 10x1 and place them next to each other
-        grid1 = NumberPlane(x_range=[0, 10, 1], y_range=[0, 1, 1], x_length=10, y_length=1)
-        grid2 = NumberPlane(x_range=[0, 10, 1], y_range=[0, 1, 1], x_length=10, y_length=1)
+        grid1 = NumberPlane(
+            x_range=[0, 10, 1], y_range=[0, 1, 1], x_length=10, y_length=1
+        )
+        grid2 = NumberPlane(
+            x_range=[0, 10, 1], y_range=[0, 1, 1], x_length=10, y_length=1
+        )
         grid1.shift(UP * 2)
         grid2.shift(DOWN * 2)
 
@@ -65,7 +70,6 @@ class Duff(Scene):
         self.play(ReplacementTransform(case_text10, case_text2))
         self.wait(1)
 
-
         # Create 4 arrows and move them to the correct positions above the grid 1 and 2
         arrows = []
         for i in range(4):
@@ -81,7 +85,7 @@ class Duff(Scene):
             text = Text(str(i))
             text.move_to(grid2.coords_to_point(i, 0) + UP * 0.5 + RIGHT * 0.5)
             new_grid2_texts.append(text)
-            
+
         # First we show 2 texts
         self.play(Create(arrows[0]), Create(arrows[1]))
         for i in range(2):
