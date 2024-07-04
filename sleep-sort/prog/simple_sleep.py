@@ -15,7 +15,8 @@ def my_func(n, max):
 
 async def runner():
     # numbers = [int(i) for i in argv[1:]]
-    numbers = [1, 3, 2, 8, 4, 16, 13, 123]
+    numbers = [1, 100, 231, 444, 555, 766]
+
     print(numbers)
     maximum = max(numbers)
     reduced_numbers = [my_func(i, maximum) for i in numbers]

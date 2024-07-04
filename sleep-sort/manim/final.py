@@ -4,11 +4,14 @@ from math import sqrt
 
 def point_scaler(points):
     m = max(points)
-    return [4000 * sqrt(p) / m for p in points]
+    K = 4000  # A constant so that it looks good while drawing
+    return [K * sqrt(p) / m for p in points]
 
 
 class PlotPointsAndScale(Scene):
     def construct(self):
+        self.camera.background_color = "#1b1b1e"
+
         # Define the points to plot
         points = [1, 100, 231, 444, 555, 766]
 
