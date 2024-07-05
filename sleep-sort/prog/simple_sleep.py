@@ -17,10 +17,10 @@ async def runner():
     # numbers = [int(i) for i in argv[1:]]
     numbers = [1, 100, 231, 444, 555, 766]
 
-    print(numbers)
+    print("Original Numbers:", numbers)
     maximum = max(numbers)
     reduced_numbers = [my_func(i, maximum) for i in numbers]
-    print(reduced_numbers)
+    print("Scaled Numbers:", reduced_numbers)
     tasks = [Task(f(n, t)) for n, t in zip(numbers, reduced_numbers)]
     await wait(tasks)
 
