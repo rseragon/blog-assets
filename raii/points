@@ -1,0 +1,58 @@
+- What is a resource
+  + Anything which requires special memory management (allocation which is done on heap)
+  + Eg: malloc/calloc, file handlers, mutex locks, threads, 
+  + RAII doesn't only apply to heap allocation, any thing which memory allocation
+    has to be explicity managed, then it comes under RAII
+  + Common resources
+    - memory
+    - POSIX file
+    - joinable threads
+    - mutext locking
+
++ What is RAII
+  - When we init a resource, it gets allocated resources. Therefore, we're are obligated to destroy the resource to avoid leaks
+  - This is generally achieved by associating variables to objects classes which have a predefined destructors. This ensures that the resources allocated are gracefully handled at the end of the program.
+
+- If a class directly manages a resource explicitly, you need to do the foll
+  + Write a (Rule of three)
+    - Destructor -> free the resource
+    - copy constructor -> copy the resource
+    - copy assignment operator -> free resources on lhs and copy rhs
+    - (rule of 5)
+      - Rule of 3 + move ctor, move assign operator
+
+  - If you don't have any of the above defined, the you can avoid skipping all of 'em
+    w.r.t to rule of 0, but if you have even one if them defined, then you have to 
+    implement all of 'em.
+  - Even if you use all std library components, then you can follow rule of zero
+    (except for swap as compiler generated swap isn't that good)
+
+  - Prefer rule 0 if possible, your code is solving problems not managing resources
+    let the std lib take care of resource management
+
++ Copy and swap idiom
+  - Used to avoid self-deletion and copy while self-copying (`a = a`)
+
++ When an exception is caught, every variable/object is deleted during stack unwinding, 
+  so if we don't place our cleanup code in the destructor, then we might have memory leaks
+
++ RAII in rust
+  - It's known as OBRM (Ownership Based resource management)
+  - https://doc.rust-lang.org/nomicon/obrm.html
+  - The resource is definitely dropped when the owner of the resource goes out of scope
+  - This is automatic from the compiler
+
+# Reading
+- The rule of three 
+  + https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)
+  + https://stackoverflow.com/questions/4172722/what-is-the-rule-of-three
+- copy and swap idiom - https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom
+
+# REFS
+- https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization
+- https://en.cppreference.com/w/cpp/language/raii
+- https://www.stroustrup.com/bs_faq2.html#finally
+- https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#e6-use-raii-to-prevent-leaks
+- https://dev.to/10xlearner/memory-management-and-raii-4f20
+- https://eli.thegreenplace.net/2016/c-raii-without-exceptions/
+
